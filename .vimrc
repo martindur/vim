@@ -40,6 +40,9 @@ Plugin 'sheerun/vim-polyglot'
 
 Plugin 'tweekmonster/django-plus.vim'
 
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'thosakwe/vim-flutter'
+
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
 filetype plugin indent on	" required
