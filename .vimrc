@@ -1,5 +1,6 @@
 set nocompatible		" required
 filetype off			" required
+:let mapleader = ","
 
 " set the runtime path to include Vundle initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -22,6 +23,7 @@ Plugin 'vim-syntastic/syntastic'
 "Plugin 'nview/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -53,6 +55,16 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Refresh NERDTree with leader+r
+nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>:CtrlPClearCache<cr>
+
+" Open NERDTree automatically when a running 'vim' in a dir
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Close vim if a file is closed, and NERDTree is the only window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Default Spacing
 set tabstop=4
@@ -116,3 +128,7 @@ set nu
 
 set clipboard=unnamed
 
+
+" Dart config
+let g:dart_format_on_save = 1
+let g:dart_style_guide = 2
